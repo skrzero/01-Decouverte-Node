@@ -1,107 +1,114 @@
-# 📘 TP Node.js – Journal de bord (Fichiers & Asynchronisme)
+# TP Node.js – Message de Bienvenue en ASCII Art 🎨
 
-## 🎯 Objectif
+Dans ce mini-TP, tu vas créer un petit programme en Node.js qui affiche un message de bienvenue stylisé grâce à l’ASCII Art. Ce sera l'occasion de découvrir comment utiliser `npm` et importer des packages tiers.
 
-Créer une petite application en Node.js pour enregistrer des messages dans un journal texte, avec gestion asynchrone des fichiers via le module `fs`.
+## 🧑‍💻 Objectifs
 
----
-
-## 🧪 Étapes à suivre
-
-### 1. Importer les modules nécessaires
-
-Importez :
-- `fs` pour manipuler les fichiers
-- `readline` pour lire les saisies utilisateur
-- `path` pour gérer les chemins de manière fiable
+- Initialiser un projet Node.js
+- Installer et utiliser un module externe (`figlet`)
+- Créer un script qui affiche un message en ASCII Art
+- (Bonus) Ajouter de la couleur avec le module `chalk`
+- (Bonus 2) Transformer le tout en fonction réutilisable
 
 ---
 
-### 2. Définir le chemin vers le fichier
+## 📦 Étapes
 
-Créez une variable contenant le **chemin absolu** vers un fichier `journal.txt` (utiliser `__dirname` et `path.join`).
+### 1. Initialiser ton projet Node.js
 
----
+Dans ton terminal, place-toi dans ton dossier de travail et initialise un nouveau projet Node.js :
 
-### 3. Poser une question à l’utilisateur
-
-Utilisez `readline` pour demander à l’utilisateur un message à enregistrer.  
-Stockez la réponse pour l’utiliser ensuite.
-
-💡 Aide d'utilisation du package `readline` : 
-
-```js 
-const readline = require('readline');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.question("Votre message : ", (answer) => {
-  console.log("Vous avez écrit :", answer);
-  rl.close();
-});
+```bash
+npm init -y
 ```
 
+### 2. Installer le module `figlet`
+
+Ce module permet de transformer du texte en art ASCII :
+
+```bash
+npm install figlet
+```
+
+### 3. Créer le fichier `bienvenue.js`
+
+Dans ce fichier, tu vas :
+
+- Importer le module `figlet`
+- Créer une variable contenant ton message de bienvenue
+- Générer et afficher l’ASCII Art dans le terminal
+
+💡 Astuce : pense à consulter la [doc de figlet sur npm](https://www.npmjs.com/package/figlet)
+
+### 4. Lancer ton programme
+
+Tu peux maintenant lancer ton script avec :
+
+```bash
+node bienvenue.js
+```
+
+Tu devrais voir ton message en ASCII s’afficher 🎉
+
 ---
 
-### 4. Ajouter le message au fichier
+## ✨ Bonus
 
-Ajoutez le message au fichier `journal.txt` :
-- en mode **asynchrone**
-- sans écraser les précédents messages
+### 🎨 Ajouter des couleurs
 
-Ajoutez un retour visuel dans la console pour confirmer que l’ajout a bien eu lieu.
+Pour pimper ton message, installe le module `chalk` :
 
----
+```bash
+npm install chalk
+```
 
-### 5. Lire le journal
+Puis utilise-le pour afficher ton message coloré :
 
-Lisez le fichier et affichez tous les messages existants après l'ajout. Utilisez une méthode asynchrone de lecture.
-
----
-
-### 6. Fermer proprement le programme
-
-Fermez l’interface `readline` à la fin du processus, ou en cas d’erreur.
-
----
-
-## 💡 Bonus
-
-### 🕒 Bonus 1 : Horodatage
-
-Créez une fonction dédiée pour générer un horodatage automatique à insérer devant chaque message par exemple :
-[01/06/2025, 14:15:10] Mon message
-
-Vous pouvez utiliser l'objet date ci dessous : 
 ```js
-const now = new Date();
-return now.toLocaleString();
+const chalk = require('chalk');
+console.log(chalk.cyan(data));
+```
+
+### 🔁 Créer une fonction réutilisable
+
+Transforme ton code en une fonction qui prend un message en paramètre et l’affiche en ASCII Art :
+
+```js
+function afficherAscii(message) {
+  figlet(message, (err, data) => {
+    if (err) return console.error(err);
+    console.log(data);
+  });
+}
+```
+
+Tu peux ensuite appeler :
+
+```js
+afficherAscii("Hello World");
 ```
 
 ---
 
-### 🧱 Bonus 2 : Refactorisation en fonctions
+## 🚀 Challenge final
 
-Refactorez votre code en plusieurs fonctions bien nommées :
-- `askMessage()`
-- `appendToJournal()`
-- `readJournal()`
-- `getTimestamp()`
+Laisse parler ta créativité :
+- Change le message
+- Ajoute de la couleur
 
 ---
 
-## ✅ Objectifs à vérifier
+## 🧪 Exemple de rendu
 
-- [ ] Le message saisi est enregistré dans le fichier
-- [ ] Le fichier conserve les anciens messages (pas écrasé)
-- [ ] Un horodatage précède chaque message (bonus)
-- [ ] Le contenu est lu et affiché à la fin
-- [ ] Toutes les opérations utilisent des méthodes asynchrones
-- [ ] Le code est structuré proprement en fonctions (bonus)
+```
+  ____  _                 _                     
+ |  _ \| |               | |                    
+ | |_) | | ___   ___   __| | ___                
+ |  _ <| |/ _ \ / _ \ / _` |/ _ \               
+ | |_) | | (_) | (_) | (_| |  __/               
+ |____/|_|\___/ \___/ \__,_|\___|               
+```
 
 ---
 
-🚀 Bon TP et amusez-vous avec Node.js !
+Happy Coding! 😎

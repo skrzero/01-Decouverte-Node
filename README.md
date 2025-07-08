@@ -85,18 +85,8 @@ function afficherAscii(message) {
 Tu peux ensuite appeler :
 
 ```js
-afficherAscii("Hello World");
+afficherAscii("My ASCII Art");
 ```
-
----
-
-## 🚀 Challenge final
-
-Laisse parler ta créativité :
-- Change le message
-- Ajoute de la couleur
-
----
 
 ## 🧪 Exemple de rendu
 
@@ -108,6 +98,62 @@ Laisse parler ta créativité :
  | |_) | | (_) | (_) | (_| |  __/               
  |____/|_|\___/ \___/ \__,_|\___|               
 ```
+
+
+---
+
+## 🚀 Bonus lancer tout ça sur un serveur HTTP
+
+Tu vas combiner :
+
+- Le module natif `http`
+- La logique de serveur Node.js
+- Ton art en ASCII
+
+### 1. Créer un nouveau fichier `server.js`
+
+C’est lui qui contiendra le code de ton serveur.
+
+### 2. Importer le module http
+
+```js
+const http = require('http');
+```
+
+### 3. Stocker ton ASCII Art dans une variable
+
+Tu peux copier-coller ton ASCII art dans une chaîne de caractères multilignes :
+
+```js
+const asciiArt = `
+      /\\_/\\  
+     ( o.o ) 
+      > ^ < 
+`;
+```
+
+### 4. Créer le serveur et envoyer l'ASCII Art
+```js 
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end(asciiArt);
+});
+```
+
+
+### 3. Lancer le serveur sur le port 3000
+```js 
+server.listen(3000, () => {
+  console.log('Serveur lancé sur http://localhost:3000');
+});
+```
+
+Lance ensuite ton serveur avec ta commande 
+```bash
+node serveur.js
+```
+
+Puis ouvre http://localhost:3000 dans ton navigateur pour voir ton chef-d'œuvre 🎨
 
 ---
 

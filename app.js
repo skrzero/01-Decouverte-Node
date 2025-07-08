@@ -2,15 +2,14 @@ const fs = require('fs')
 const readline = require('readline');
 const path = require('path');
 const chalk = require('chalk');
-console.log(chalk.blue('hello word!'));
 
 let chemin = path.join(__dirname,'journal.txt');
 console.log(chemin);
 
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
+const rl = readline.createInterface({ /* creer un terminal car de base node js na pas de méthode comme prompt  */
+  input: process.stdin, /* stdin = stardart input*/
+  output: process.stdout /* stdout = standart output*/
 });
 
 rl.question("Votre message : ", (answer) => {

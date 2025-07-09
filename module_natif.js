@@ -72,3 +72,21 @@ function lirejournal(){
 }
 lirejournal();
 
+// server htpp
+const http = require('http');
+const server = http.createServer((req,res)=>{
+  res.writeHead(200,{'content-Type': 'text/plain'});
+  res.end('cpt');
+    if(req.url == "/afec"){
+      console.log('vous ete sur le serveur afec');
+    } else {
+      console.log('autre site');
+    };
+  
+console.log(req.url + req.method);
+})
+server.listen(3001,()=>{
+console.log('ok 3001');
+
+})
+
